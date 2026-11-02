@@ -3,8 +3,8 @@
 // Every Crowdlock publishes its parameters in one file, crowdlocks/<name>.json.
 // Nothing about any particular Crowdlock — its declaration, its co-signer, its
 // minimums — is written into the code. The code reads the file it is pointed
-// at, so the same register page and the same lock tools serve The Kop Fund and
-// anybody else's Crowdlock alike.
+// at, so the same register page and the same lock tools serve every Crowdlock
+// alike, including The Kop Fund's.
 //
 // Everything here is a pure check: no network, no keys, no signing. It runs
 // unchanged in a browser and in Node.
@@ -118,8 +118,15 @@ export function checkCrowdlock(c, { declarationText } = {}) {
     }
   }
 
+  // Optional. The page to send people to when this Crowdlock is shared — its
+  // front page or joining page. Without it, apps share the site the file
+  // sits in.
+  if (c.site !== undefined) {
+    need(typeof c.site === "string" && /^https:\/\/[^\s]+$/.test(c.site) && c.site.length <= 200, "site, if given, must be an https address");
+  }
+
   // Optional. Public Nostr relays where members post signed registrations and
-  // locks, for the Crowdlock's own repository to collect (js/inbox.mjs). No
+  // locks, for the Crowdlock's own repository to collect (method/js/inbox.mjs). No
   // account, no server and no key of anybody's sits in that path.
   if (c.relays !== undefined) {
     need(Array.isArray(c.relays) && c.relays.length > 0 && c.relays.length <= 10
@@ -127,7 +134,7 @@ export function checkCrowdlock(c, { declarationText } = {}) {
       "relays, if given, must be a list of up to 10 wss:// addresses");
   }
   // Optional, published in advance: relays that replace a live one which has
-  // been silent for 7 days (relay/inbox.mjs). Chosen now, in public, so nobody
+  // been silent for 7 days (method/relay/inbox.mjs). Chosen now, in public, so nobody
   // picks a relay on the day.
   if (c.spare_relays !== undefined) {
     need(Array.isArray(c.relays), "spare_relays needs relays");
