@@ -17,9 +17,10 @@
     1
   ],
   "minimum_counted_lock_sats": 10000,
-  "cosigner_keys": [
-    "03d8efecbd535b579b99cde1c7405fd671c046b133245b19f8763d4b7d2fe90e06"
-  ],
+ "cosigner_keys": [
+  "03d8efecbd535b579b99cde1c7405fd671c046b133245b19f8763d4b7d2fe90e06",
+  "029ed1d415452be2bb5e04117e273a238c1775acfc0239fcdd60da489e0b802ddf"
+],
   "gathering_window_max_days": 28,
   "settlement_window_max_days": 14,
   "destination_wait_days": 14,
