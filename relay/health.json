@@ -1,7 +1,7 @@
 {
   "test-2-test.json": {
     "wss://relay.damus.io": {
-      "lastAnswered": "2026-11-15",
+      "lastAnswered": "2026-11-16",
       "since": "2026-11-03"
     },
     "wss://nos.lol": {
